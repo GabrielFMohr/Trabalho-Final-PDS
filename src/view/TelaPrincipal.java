@@ -17,14 +17,23 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import model.Hospede;
+import model.Nacionalidades;
+import model.pessoas;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textNome;
 	private JTextField textDataNasc;
-	private JTextField textNacionalidade;
-	private JTextField textDataou;
+	private JTextField textPassa;
 	private JTextField textDatain;
 	private JTextField textDataOut;
 	private JTextField textQuarto;
@@ -56,6 +65,7 @@ public class TelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipal() {
+		ArrayList<Hospede> lista = new ArrayList<Hospede>();
 		setTitle("Cadastro de Hóspede");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1017, 710);
@@ -64,134 +74,183 @@ public class TelaPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new MigLayout("", "[250px][75px][100px,grow][100px,grow][50px,grow][100px,grow][100px,grow][100px,grow][50px][50px][50px]", "[100px][10px][100px,grow][100px][100px][100px][100px][100px][100px][200px][100px][100px]"));
+		contentPane.setLayout(new MigLayout("", "[250px][75px][75px,grow][75px][100px,grow][100px,grow][50px,grow][100px,grow][100px,grow][100px,grow][50px][50px][50px]", "[100px][10px][100px,grow][100px][100px][100px][100px][100px][100px][200px,grow][100px][100px]"));
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\Group 8782 (2).png"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Trabalho-Final-PDS\\Group 8782.png"));
 		contentPane.add(lblNewLabel, "cell 0 0 1 11,aligny top");
 		
-		JLabel lblNewLabel_2 = new JLabel("Cadastar Hóspede");
+		JLabel lblNewLabel_2 = new JLabel("Cadastrar Hóspede");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblNewLabel_2.setFont(new Font("Corbel", Font.BOLD, 42));
-		contentPane.add(lblNewLabel_2, "cell 2 0 9 2,alignx center,aligny bottom");
+		contentPane.add(lblNewLabel_2, "cell 1 0 12 2,alignx center,aligny bottom");
 		
 		JLabel lblNewLabel_3 = new JLabel("Nome:");
-		contentPane.add(lblNewLabel_3, "cell 1 2,alignx right");
+		lblNewLabel_3.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3, "cell 1 2 2 1,alignx right");
 		
 		textNome = new JTextField();
 		textNome.setBackground(new Color(196, 196, 196));
-		contentPane.add(textNome, "cell 2 2 3 1,growx");
+		contentPane.add(textNome, "cell 3 2 3 1,growx");
 		textNome.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Data Nascimento:");
-		contentPane.add(lblNewLabel_4, "cell 5 2 2 1,alignx right");
+		lblNewLabel_4.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_4, "cell 6 2 2 1,alignx right");
 		
 		textDataNasc = new JTextField();
 		textDataNasc.setColumns(10);
 		textDataNasc.setBackground(new Color(196, 196, 196));
-		contentPane.add(textDataNasc, "cell 7 2 3 1,growx");
+		contentPane.add(textDataNasc, "cell 8 2 3 1,growx");
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Nacionalidade:");
-		contentPane.add(lblNewLabel_3_1, "cell 1 3,alignx trailing");
+		lblNewLabel_3_1.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1, "cell 1 3 2 1,alignx trailing");
 		
-		textNacionalidade = new JTextField();
-		textNacionalidade.setColumns(10);
-		textNacionalidade.setBackground(new Color(196, 196, 196));
-		contentPane.add(textNacionalidade, "cell 2 3 2 1,growx");
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(Nacionalidades.values()));
+		contentPane.add(comboBox, "cell 3 3 2 1,growx");
 		
 		JLabel lblNewLabel_3_1_1 = new JLabel("Passaporte:");
+		lblNewLabel_3_1_1.setFont(new Font("Carlito", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel_3_1_1, "cell 5 3 2 1,alignx right");
 		
-		textDataou = new JTextField();
-		textDataou.setColumns(10);
-		textDataou.setBackground(new Color(196, 196, 196));
-		contentPane.add(textDataou, "cell 7 3 4 1,growx");
+		textPassa = new JTextField();
+		textPassa.setColumns(10);
+		textPassa.setBackground(new Color(196, 196, 196));
+		contentPane.add(textPassa, "cell 7 3 4 1,growx");
 		
 		JLabel lblNewLabel_3_1_2 = new JLabel("Data Check-In:");
-		contentPane.add(lblNewLabel_3_1_2, "cell 1 4,alignx trailing,aligny center");
+		lblNewLabel_3_1_2.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2, "cell 1 4 2 1,alignx trailing,aligny center");
 		
 		textDatain = new JTextField();
 		textDatain.setColumns(10);
 		textDatain.setBackground(new Color(196, 196, 196));
-		contentPane.add(textDatain, "cell 2 4,growx");
+		contentPane.add(textDatain, "cell 3 4 2 1,growx");
 		
 		JLabel lblNewLabel_3_1_2_1 = new JLabel("Data Check-out:");
-		contentPane.add(lblNewLabel_3_1_2_1, "cell 3 4,alignx trailing");
+		lblNewLabel_3_1_2_1.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_1, "cell 5 4,alignx trailing");
 		
 		textDataOut = new JTextField();
 		textDataOut.setColumns(10);
 		textDataOut.setBackground(new Color(196, 196, 196));
-		contentPane.add(textDataOut, "cell 4 4 2 1,growx");
+		contentPane.add(textDataOut, "cell 6 4,growx");
 		
 		JLabel lblNewLabel_3_1_2_2 = new JLabel("N° Quarto:");
-		contentPane.add(lblNewLabel_3_1_2_2, "cell 6 4,alignx trailing");
+		lblNewLabel_3_1_2_2.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_2, "cell 7 4,alignx trailing");
 		
 		textQuarto = new JTextField();
 		textQuarto.setColumns(10);
 		textQuarto.setBackground(new Color(196, 196, 196));
-		contentPane.add(textQuarto, "cell 7 4 2 1,growx");
+		contentPane.add(textQuarto, "cell 8 4 3 1,growx");
 		
-		JLabel lblNewLabel_3_1_2_3 = new JLabel("Telefone Hóspede");
-		contentPane.add(lblNewLabel_3_1_2_3, "cell 1 5,alignx trailing");
+		JLabel lblNewLabel_3_1_2_3 = new JLabel("Telefone Hóspede:");
+		lblNewLabel_3_1_2_3.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_3, "cell 1 5 2 1,alignx trailing");
 		
 		textTelefone = new JTextField();
 		textTelefone.setColumns(10);
 		textTelefone.setBackground(new Color(196, 196, 196));
-		contentPane.add(textTelefone, "cell 2 5 2 1,growx");
+		contentPane.add(textTelefone, "cell 3 5 2 1,growx");
 		
 		JLabel lblNewLabel_3_1_2_4 = new JLabel("Email Hóspede:");
-		contentPane.add(lblNewLabel_3_1_2_4, "cell 4 5 2 1,alignx right");
+		lblNewLabel_3_1_2_4.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_4, "cell 5 5,alignx right");
 		
 		textEmail = new JTextField();
 		textEmail.setColumns(10);
 		textEmail.setBackground(new Color(196, 196, 196));
-		contentPane.add(textEmail, "cell 6 5 4 1,growx");
+		contentPane.add(textEmail, "cell 6 5 5 1,growx");
 		
 		JLabel lblNewLabel_3_1_2_6 = new JLabel("Endereço Hóspede:");
-		contentPane.add(lblNewLabel_3_1_2_6, "cell 1 6,alignx trailing");
+		lblNewLabel_3_1_2_6.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_6, "cell 1 6 2 1,alignx trailing");
 		
 		textEnd = new JTextField();
 		textEnd.setColumns(10);
 		textEnd.setBackground(new Color(196, 196, 196));
-		contentPane.add(textEnd, "cell 2 6 2 1,growx");
+		contentPane.add(textEnd, "cell 3 6 3 1,growx");
 		
 		JLabel lblNewLabel_3_1_2_7 = new JLabel("N°Pessoas Reserva");
-		contentPane.add(lblNewLabel_3_1_2_7, "cell 5 6 2 1,alignx trailing");
+		lblNewLabel_3_1_2_7.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_7, "cell 6 6 2 1,alignx trailing");
 		
 		textPessoas = new JTextField();
 		textPessoas.setColumns(10);
 		textPessoas.setBackground(new Color(196, 196, 196));
-		contentPane.add(textPessoas, "cell 7 6 2 1,growx");
+		contentPane.add(textPessoas, "cell 8 6 3 1,growx");
 		
-		JLabel lblNewLabel_3_1_2_9 = new JLabel("Situações Especiasi:");
-		contentPane.add(lblNewLabel_3_1_2_9, "cell 1 7,alignx trailing");
+		JLabel lblNewLabel_3_1_2_9 = new JLabel("Situações Especiais:");
+		lblNewLabel_3_1_2_9.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_9, "cell 1 7 2 1,alignx trailing");
 		
 		textSit = new JTextField();
 		textSit.setColumns(10);
 		textSit.setBackground(new Color(196, 196, 196));
-		contentPane.add(textSit, "cell 2 7 3 1,growx");
+		contentPane.add(textSit, "cell 3 7 2 1,growx");
 		
 		JLabel lblNewLabel_3_1_2_5 = new JLabel("Avaliação do Hóspede");
+		lblNewLabel_3_1_2_5.setFont(new Font("Carlito", Font.PLAIN, 20));
 		contentPane.add(lblNewLabel_3_1_2_5, "cell 5 7 2 1,alignx trailing");
 		
 		textAval = new JTextField();
 		textAval.setColumns(10);
 		textAval.setBackground(new Color(196, 196, 196));
-		contentPane.add(textAval, "cell 7 7 3 1,growx");
+		contentPane.add(textAval, "cell 7 7 4 1,growx");
 		
 		JLabel lblNewLabel_3_1_2_8 = new JLabel("Total a pagar hospedagem:");
-		contentPane.add(lblNewLabel_3_1_2_8, "cell 1 8,alignx trailing");
+		lblNewLabel_3_1_2_8.setFont(new Font("Carlito", Font.PLAIN, 20));
+		contentPane.add(lblNewLabel_3_1_2_8, "cell 1 8 3 1,alignx trailing");
 		
 		textTotalPagar = new JTextField();
 		textTotalPagar.setEditable(false);
 		textTotalPagar.setColumns(10);
 		textTotalPagar.setBackground(new Color(196, 196, 196));
-		contentPane.add(textTotalPagar, "cell 2 8 2 1,growx");
+		contentPane.add(textTotalPagar, "cell 4 8 3 1,growx");
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Aluno\\Downloads\\Group 8781.png"));
-		contentPane.add(lblNewLabel_1, "cell 1 9 10 1,alignx center,aligny center");
+		lblNewLabel_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Hospede p= new Hospede();
+				String nome=textNome.getText();
+				String dataNasc=textDataNasc.getText();
+				Integer passaporte=Integer.valueOf(textPassa.getText());
+				String dataIn=textDatain.getText();
+				String dataOut=textDataOut.getText();
+				Integer nQuarto=Integer.valueOf(textQuarto.getText());
+				Integer telefone=Integer.valueOf(textTelefone.getText());
+				Integer nPessoas=Integer.valueOf(textPessoas.getText());
+				String sitEso=textSit.getText();
+				String avalHosp=textAval.getText();
+				Float totalHospedagem=Float.valueOf(textTotalPagar.getText());
+				
+				p.setNome(nome);
+				p.setDataNasc(dataNasc);
+				p.setPassaporte(passaporte);
+				p.setDataIn(dataIn);
+				p.setDataOut(dataOut);
+				p.setnQuarto(nQuarto);
+				p.setTelefone(telefone);
+				p.setnPessoas(nPessoas);
+				p.setSitEso(sitEso);
+				p.setAvalHosp(avalHosp);
+				p.setTotalHospedagem(totalHospedagem);
+				p.setNacionalidade(comboBox.getSelectedIndex());
+				
+				
+			}
+		});
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Trabalho-Final-PDS\\Group 8781 (2).png"));
+		contentPane.add(lblNewLabel_5, "cell 1 9 4 1");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Aluno\\Desktop\\Trabalho-Final-PDS\\Group 8781 (1).png"));
+		contentPane.add(lblNewLabel_1, "cell 5 9 6 1,alignx right,aligny center");
 	}
 
 }
