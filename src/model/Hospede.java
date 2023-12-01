@@ -13,6 +13,7 @@ public class Hospede {
 	private String avalHosp;
 	private Float totalHospedagem;
 	private String nacionalidade;
+	private Integer diasT;
 	public String getNacionalidade() {
 		return nacionalidade;
 	}
@@ -84,6 +85,12 @@ public class Hospede {
 	}
 	public void setTotalHospedagem(Float totalHospedagem) {
 		this.totalHospedagem = totalHospedagem;
+	}
+	public Integer getDiasT() {
+		return diasT;
+	}
+	public void setDiasT(Integer diasT) {
+		this.diasT = diasT;
 	}
 
 }
