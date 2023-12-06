@@ -247,7 +247,7 @@ public class TelaPrincipal extends JFrame {
 				p.setSitEso(sitEso);
 				p.setAvalHosp(avalHosp);
 				p.setTotalHospedagem(totalHospedagem);
-				p.setNacionalidade(null);
+				p.setNacionalidade(comboBox.getSelectedItem());
 				p.setDiasT(diasT);
 				
 				lista.add(p);

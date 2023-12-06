@@ -12,13 +12,13 @@ public class Hospede {
 	private String sitEso;
 	private String avalHosp;
 	private Float totalHospedagem;
-	private String nacionalidade;
+	private Object nacionalidade;
 	private Integer diasT;
-	public String getNacionalidade() {
+	public Object getNacionalidade() {
 		return nacionalidade;
 	}
-	public void setNacionalidade(String nacionalidade) {
-		this.nacionalidade = nacionalidade;
+	public void setNacionalidade(Object object) {
+		this.nacionalidade = object;
 	}
 	public String getNome() {
 		return nome;
