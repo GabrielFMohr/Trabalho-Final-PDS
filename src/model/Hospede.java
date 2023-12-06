@@ -12,19 +12,21 @@ public class Hospede {
 	private String sitEso;
 	private String avalHosp;
 	private Float totalHospedagem;
-	private Object nacionalidade;
+	private Nacionalidades nacionalidade;
 	private Integer diasT;
+	private String endereco;
+	private String email;
 	public Object getNacionalidade() {
 		return nacionalidade;
 	}
-	public void setNacionalidade(Object object) {
+	public void setNacionalidade(Nacionalidades object) {
 		this.nacionalidade = object;
 	}
 	public String getNome() {
 		return nome;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String setNome(String nome) {
+		return this.nome = nome;
 	}
 	public String getDataNasc() {
 		return dataNasc;
@@ -91,6 +93,18 @@ public class Hospede {
 	}
 	public void setDiasT(Integer diasT) {
 		this.diasT = diasT;
+	}
+	public String getEndereco() {
+		return endereco;
+	}
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

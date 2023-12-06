@@ -48,7 +48,7 @@ public class TelaPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaPrincipal frame = new TelaPrincipal();
+					TelaPrincipal frame = new TelaPrincipal(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,7 +60,8 @@ public class TelaPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPrincipal() {
+	@SuppressWarnings("unchecked")
+	public TelaPrincipal(TelaTabela z) {
 		ArrayList<Hospede> lista = new ArrayList<Hospede>();
 		TelaTabela t=new TelaTabela();
 		setTitle("Cadastro de Hóspede");
@@ -233,8 +234,11 @@ public class TelaPrincipal extends JFrame {
 				Integer nPessoas=Integer.valueOf(textPessoas.getText());
 				String sitEso=textSit.getText();
 				String avalHosp=textAval.getText();
-				Float totalHospedagem=Float.valueOf(textTotalPagar.getText());
 				Integer diasT=Integer.valueOf(textDiasT.getText());
+				String endereco=textEnd.getText();
+				String email=textEmail.getText();
+				Float totalHospedagem=(float) (diasT*237.9);
+				textTotalPagar.setText(String.valueOf(totalHospedagem));
 				
 				p.setNome(nome);
 				p.setDataNasc(dataNasc);
@@ -247,12 +251,14 @@ public class TelaPrincipal extends JFrame {
 				p.setSitEso(sitEso);
 				p.setAvalHosp(avalHosp);
 				p.setTotalHospedagem(totalHospedagem);
-				p.setNacionalidade(comboBox.getSelectedItem());
+				p.setNacionalidade((Nacionalidades) comboBox.getSelectedItem());
 				p.setDiasT(diasT);
+				p.setEndereco(endereco);
+				p.setEmail(email);
 				
 				lista.add(p);
 			
-				
+				t.atualizarDados(lista);
 				
 			}
 		});

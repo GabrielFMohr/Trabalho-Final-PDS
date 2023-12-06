@@ -21,7 +21,10 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaTabela extends JFrame {
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	private ArrayList<Hospede> listaHospede;
@@ -30,8 +33,8 @@ public class TelaTabela extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+
 		
-		ArrayList<Hospede> listaHospede;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -67,33 +70,37 @@ public class TelaTabela extends JFrame {
 		table.setModel(new DefaultTableModel(
 		new Object[][]{},
 		new String[]{
-		"Nome", "Data Nascimento", "Passaporte", "Data Checkin", "Data Checkout","N° Quarto","Telefone", "N° Pessoas", "Situação Especial","Avaliação Hóspede", "Total Hospedagem","Nacionalidade","Dias Totais Estadia","Total a Pagar",
+		"Nome", "Data Nascimento", "Passaporte", "Data Checkin", "Data Checkout","Email","Endereço","N° Quarto","Telefone", "N° Pessoas", "Situação Especial","Avaliação Hóspede", "Total Hospedagem","Nacionalidade","Dias Totais Estadia","Total a Pagar",
 		}));
 		scrollPane.setViewportView(table);
 		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.setBounds(5, 433, 390, 23);
-		btnExcluir.addActionListener(e -> {
-		int idx_linha = table.getSelectedRow();
-		if (idx_linha < 0) {
-		JOptionPane.showMessageDialog(null, "Selecione a registro para excluir!");
-		return;
-		}
-		listaHospede.remove(idx_linha);
-		atualizarDados(listaHospede);
-		}
+		JButton btnNewButton = new JButton("Excluir");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idx_linha = table.getSelectedRow();
+				if (idx_linha < 0) {
+					JOptionPane.showMessageDialog(null, "Selecione a registro para excluir!");
+				return;
+				}
+				listaHospede.remove(idx_linha);
+				atualizarDados(listaHospede);
+			}
+		});
+		btnNewButton.setBounds(50, 680, 250, 23);
+		contentPane.add(btnNewButton);}
 		
-	
+
 	public void atualizarDados(ArrayList<Hospede> hospede) {
-		this.listaHospede=hospede;
+		this.listaHospede = hospede;
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 
 		for (Hospede pessoa : listaHospede) {
-		model.addRow(new Object[]{
-		pessoa.getNome(),pessoa.getDataNasc(), pessoa.getPassaporte(), pessoa.getDataIn(),
-		pessoa.getDataOut(),pessoa.getnQuarto(),pessoa.getTelefone(), pessoa.getnPessoas(), pessoa.getSitEso(),pessoa.getAvalHosp() ,pessoa.getTotalHospedagem(),pessoa.getTotalHospedagem(),pessoa.getNacionalidade(),pessoa.getDiasT()
-		});
+			model.addRow(new Object[] { pessoa.getNome(), pessoa.getDataNasc(), pessoa.getPassaporte(),
+					pessoa.getDataIn(), pessoa.getDataOut(),pessoa.getEndereco(),pessoa.getEmail(), pessoa.getnQuarto(), pessoa.getTelefone(),
+					pessoa.getnPessoas(), pessoa.getSitEso(), pessoa.getAvalHosp(), pessoa.getTotalHospedagem(),
+					pessoa.getTotalHospedagem(), pessoa.getNacionalidade(), pessoa.getDiasT() });
 		}
-}}
+	}
+}
